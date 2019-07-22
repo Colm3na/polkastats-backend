@@ -59,7 +59,7 @@ app.get('/validators', async function (req, res) {
 });
 
 
-app.get('/validator/:accountId', function (req, res, next) {
+app.get('/validator/graph/daily/:accountId', function (req, res, next) {
 
   // Connect to MySQL
   var con = mysql.createConnection({
