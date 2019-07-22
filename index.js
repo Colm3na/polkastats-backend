@@ -58,6 +58,37 @@ app.get('/validators', async function (req, res) {
 
 });
 
+app.get('/validator/:accountId', async function (req, res) {
+  
+  //
+  // Initialise the provider to connect to the local polkadot node
+  //
+  const provider = new WsProvider('ws://127.0.0.1:9944');
+
+  //
+  // Create the API and wait until ready
+  //
+  const api = await ApiPromise.create(provider);
+
+  //
+  // Retrieve validator staking info
+  //
+  const [validator] = await Promise.all([
+    api.derive.staking.info(req.params.accountId)
+  ]);
+
+  //
+  // Disconnect. TODO: Reuse websocket connection
+  //
+  provider.disconnect();
+
+  //
+  // Outputs JSON
+  //
+  res.json(validator);
+
+});
+
 
 app.get('/validator/graph/daily/:accountId', function (req, res, next) {
 
