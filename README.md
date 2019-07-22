@@ -19,6 +19,9 @@ $ npm run install
 
 # Serve with nodejs
 $ node index.js
+
+# Start with forever (recommended)
+$ forever start /usr/local/polkastats-backend/index.js
 ```
 
 ## Build graph backend (as root)
