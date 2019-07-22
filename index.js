@@ -69,7 +69,7 @@ app.get('/validator/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last 24 hours
-  con.query('SELECT * FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id DESC LIMIT 288;', function(err, rows, fields) {
+  con.query('SELECT * FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id DESC LIMIT 290;', function(err, rows, fields) {
     if (err) throw err;
     
     res.json(rows);
