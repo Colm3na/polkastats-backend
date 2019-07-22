@@ -27,15 +27,17 @@ $ node index.js
 
 ``` bash
 $ mysql -u root -p'your_mysql_root_password'
+> create database validators;
+> use validators;
+> CREATE TABLE bonded(  
+   id INT NOT NULL AUTO_INCREMENT,
+   accountId VARCHAR(50) NOT NULL,
+   timestamp INT(8) NOT NULL,  
+   amount VARCHAR(50) NOT NULL,
+   PRIMARY KEY ( id )  
+);
+> GRANT ALL PRIVILEGES ON validators.* to stats@localhost identified by 'stats';
 ```
-
-`> create database validators;`
-
-`> use validators;`
-
-`> CREATE TABLE bonded (id INT NOT NULL AUTO_INCREMENT, accountId VARCHAR(50) NOT NULL, timestamp INT(8) NOT NULL,  amount VARCHAR(50) NOT NULL, PRIMARY KEY ( id ));`
-
-`> GRANT ALL PRIVILEGES ON validators.* to stats@localhost identified by 'stats';`
 
 ### Execute in cron every 5 mins
 
