@@ -188,6 +188,6 @@ const credentials = {
 // Starting https server
 const httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
+httpsServer.listen(8443, () => {
+	console.log('HTTPS Server running on port 8443');
 });
