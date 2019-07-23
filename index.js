@@ -10,6 +10,9 @@ var app = express();
 
 var mysql = require('mysql');
 
+var wsProviderUrl = 'ws://127.0.0.1:9944';
+
+
 // CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -19,13 +22,44 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/system', async function (req, res) {
+  
+  //
+  // Initialise the provider to connect to the local polkadot node
+  //
+  const provider = new WsProvider(wsProviderUrl);
+
+
+  // Retrieve chain, node name and node version
+  const [chain, nodeName, nodeVersion] = await Promise.all([
+    api.rpc.system.chain(),
+    api.rpc.system.name(),
+    api.rpc.system.version()
+  ]);
+
+  //
+  // Disconnect. TODO: Reuse websocket connection
+  //
+  provider.disconnect();
+
+  //
+  // Outputs JSON
+  //
+  res.json({
+    'chain': chain,
+    'nodeName': nodeName,
+    'nodeVersion': nodeVersion
+  });
+
+});
+
 
 app.get('/validators', async function (req, res) {
   
   //
   // Initialise the provider to connect to the local polkadot node
   //
-  const provider = new WsProvider('ws://127.0.0.1:9944');
+  const provider = new WsProvider(wsProviderUrl);
 
   //
   // Create the API and wait until ready
@@ -63,7 +97,7 @@ app.get('/validator/:accountId', async function (req, res) {
   //
   // Initialise the provider to connect to the local polkadot node
   //
-  const provider = new WsProvider('ws://127.0.0.1:9944');
+  const provider = new WsProvider(wsProviderUrl);
 
   //
   // Create the API and wait until ready
@@ -116,7 +150,7 @@ app.get('/offline', async function (req, res) {
   //
   // Initialise the provider to connect to the local polkadot node
   //
-  const provider = new WsProvider('ws://127.0.0.1:9944');
+  const provider = new WsProvider(wsProviderUrl);
 
   //
   // Create the API and wait until ready
@@ -141,9 +175,9 @@ app.get('/offline', async function (req, res) {
 });
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/polkadot-node.mariopino.es/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/polkadot-node.mariopino.es/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/polkadot-node.mariopino.es/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/chain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,
