@@ -29,6 +29,10 @@ app.get('/system', async function (req, res) {
   //
   const provider = new WsProvider(wsProviderUrl);
 
+  //
+  // Create the API and wait until ready
+  //
+  const api = await ApiPromise.create(provider);
 
   // Retrieve chain, node name and node version
   const [chain, nodeName, nodeVersion] = await Promise.all([
