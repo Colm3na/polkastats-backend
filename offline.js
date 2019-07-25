@@ -34,6 +34,8 @@ async function main () {
   
   con.connect();
 
+  console.log(con);
+
   if (offlineEvents && offlineEvents.length > 0) {
 
     //console.log(JSON.stringify(offlineEvents));
