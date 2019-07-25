@@ -54,7 +54,7 @@ $ mysql -u root -p'your_mysql_root_password'
 Add this to your /etc/crontab:
 
 ``` bash
-# PolkaStats
+# PolkaStats backend
 */5 *  * * *   root     node /usr/local/polkastats-backend/stake.js | mysql -u stats -p'stats' -Dvalidators
 * *    * * *   root     node /usr/local/polkastats-backend/offline.js
 ```
