@@ -39,15 +39,24 @@ $ mysql -u root -p'your_mysql_root_password'
    amount VARCHAR(50) NOT NULL,
    PRIMARY KEY ( id )  
 );
+> CREATE TABLE offline (  
+   id INT NOT NULL AUTO_INCREMENT,
+   accountId VARCHAR(50) NOT NULL,
+   blocknumber INT(8) NOT NULL,  
+   times INT(8) NOT NULL,
+   PRIMARY KEY ( id )  
+);
 > GRANT ALL PRIVILEGES ON validators.* to stats@localhost identified by 'stats';
 ```
 
-### Execute in cron every 5 mins
+### Execute backend scripts via cron
 
 Add this to your /etc/crontab:
 
 ``` bash
+# PolkaStats
 */5 *  * * *   root     node /usr/local/polkastats-backend/stake.js | mysql -u stats -p'stats' -Dvalidators
+* *    * * *   root     node /usr/local/polkastats-backend/offline.js
 ```
 
 
