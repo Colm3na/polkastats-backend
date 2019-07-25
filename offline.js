@@ -25,45 +25,39 @@ async function main () {
   //
   const offlineEvents = await api.query.staking.recentlyOffline();
 
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "stats",
+    password: "stats",
+    database: 'validators'
+  });
+  
+  con.connect();
+
   if (offlineEvents && offlineEvents.length > 0) {
 
     //console.log(JSON.stringify(offlineEvents));
     
-    offlineEvents.forEach((offlineEvent) => {
+    for (var i = 0; i < offlineEvents.encodedLength; i++) {
 
       // ["5GnNQbHMgBrENud2k3CkbGBB4Z5uNuR6Y1R2z7amXYv8yLMp",2347862,1]
+      //console.log(`accountId: ${offlineEvent[0]} blocknumber: ${offlineEvent[1]} times: ${offlineEvent[2]}`);
 
-      console.log(`accountId: ${offlineEvent[0]} blocknumber: ${offlineEvent[1]} times: ${offlineEvent[2]}`);
+      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvent[i][0] + '\' AND blocknumber = \'' + offlineEvent[i][1] + '\' AND times = \'' + offlineEvent[i][2] + '\';';
+      
+      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvent[i][0] + '\', \'' + offlineEvent[i][1] + '\', \'' + offlineEvent[i][2] + '\');';
 
-      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvent[0] + '\' AND blocknumber = \'' + offlineEvent[1] + '\' AND times = \'' + offlineEvent[2] + '\';';
-
-      console.log('sql select: ' + sql);
-
-      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvent[0] + '\', \'' + offlineEvent[1] + '\', \'' + offlineEvent[2] + '\');';
-
-      console.log('sql insert: ' + sqlInsert);
-
-      var con = mysql.createConnection({
-        host: "localhost",
-        user: "stats",
-        password: "stats",
-        database: 'validators'
-      });
+      //console.log('sql select: ' + sql);
+      //console.log('sql insert: ' + sqlInsert);
 
       // Search for offline event in db, insert it if not found
-      con.query(sql, function(err, rows, fields) {
+      con.query(sql, function(err, rows) {
         if (err) throw err;
         
         console.log('rows: ' + rows);
 
       });
-
-
-
-      //var sql = "INSERT INTO bonded (accountId, timestamp, amount) VALUES ('" + val.accountId + "', UNIX_TIMESTAMP(), '" + val.stakers.total + "');";
-      //console.log(sql);
-      
-    });
+    }
   }
 }
 
