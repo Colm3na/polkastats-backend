@@ -45,7 +45,7 @@ async function main () {
 
       console.log('sql select: ' + sql);
 
-      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) (\'' + offlineEvent[0] + '\', \'' + offlineEvent[1] + '\', \'' + offlineEvent[2] + '\');';
+      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvent[0] + '\', \'' + offlineEvent[1] + '\', \'' + offlineEvent[2] + '\');';
 
       console.log('sql insert: ' + sqlInsert);
 
