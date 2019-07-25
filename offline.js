@@ -47,7 +47,7 @@ async function main () {
 
       var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) WHERE (\'' + offlineEvent[0] + '\', \'' + offlineEvent[1] + '\', \'' + offlineEvent[2] + '\');';
 
-      console.log('sql insert: ' + sql);
+      console.log('sql insert: ' + sqlInsert);
 
       // Search for offline event in db, insert it if not found
       con.query(sql, function(err, rows, fields) {
