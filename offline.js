@@ -3,10 +3,10 @@
 const { ApiPromise, WsProvider } = require('@polkadot/api');
 
 // Connect to MySQL
-var mysql = require('mysql');
+const mysql = require('mysql2/promise');
 
 // Local Polkadot node
-var wsProviderUrl = 'ws://127.0.0.1:9944';
+const wsProviderUrl = 'ws://127.0.0.1:9944';
 
 async function main () {
 
@@ -25,7 +25,7 @@ async function main () {
   //
   const offlineEvents = await api.query.staking.recentlyOffline();
 
-  var con = mysql.createConnection({
+  const conn = await mysql.createConnection({
     host: "localhost",
     user: "stats",
     password: "stats",
@@ -34,7 +34,7 @@ async function main () {
   
   con.connect();
 
-  console.log(con);
+  //console.log(con);
 
   if (offlineEvents && offlineEvents.length > 0) {
 
@@ -53,12 +53,10 @@ async function main () {
       //console.log('sql insert: ' + sqlInsert);
 
       // Search for offline event in db, insert it if not found
-      con.query(sql, function(err, rows) {
-        if (err) throw err;
-        
-        console.log('rows: ' + rows);
+      let [rows, fields] = await conn.execute(sql, [2, 2]);
 
-      });
+      console.log('rows: ' + rows);
+
     }
   }
 }
