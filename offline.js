@@ -43,9 +43,9 @@ async function main () {
       // ["5GnNQbHMgBrENud2k3CkbGBB4Z5uNuR6Y1R2z7amXYv8yLMp",2347862,1]
       //console.log(`accountId: ${offlineEvent[0]} blocknumber: ${offlineEvent[1]} times: ${offlineEvent[2]}`);
 
-      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvent[i][0] + '\' AND blocknumber = \'' + offlineEvent[i][1] + '\' AND times = \'' + offlineEvent[i][2] + '\';';
+      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvents[i][0] + '\' AND blocknumber = \'' + offlineEvents[i][1] + '\' AND times = \'' + offlineEvents[i][2] + '\';';
       
-      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvent[i][0] + '\', \'' + offlineEvent[i][1] + '\', \'' + offlineEvent[i][2] + '\');';
+      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvents[i][0] + '\', \'' + offlineEvents[i][1] + '\', \'' + offlineEvents[i][2] + '\');';
 
       //console.log('sql select: ' + sql);
       //console.log('sql insert: ' + sqlInsert);
