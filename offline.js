@@ -38,7 +38,7 @@ async function main () {
 
     //console.log(JSON.stringify(offlineEvents));
     
-    for (var i = 0; i < offlineEvents.encodedLength; i++) {
+    for (var i = 0; i < offlineEvents.length; i++) {
 
       // ["5GnNQbHMgBrENud2k3CkbGBB4Z5uNuR6Y1R2z7amXYv8yLMp",2347862,1]
       //console.log(`accountId: ${offlineEvent[0]} blocknumber: ${offlineEvent[1]} times: ${offlineEvent[2]}`);
