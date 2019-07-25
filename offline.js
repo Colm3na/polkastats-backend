@@ -44,16 +44,14 @@ async function main () {
       console.log(`accountId: ${offlineEvents[i][0]} blocknumber: ${offlineEvents[i][1]} times: ${offlineEvents[i][2]}`);
 
       var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvents[i][0] + '\' AND blocknumber = \'' + offlineEvents[i][1] + '\' AND times = \'' + offlineEvents[i][2] + '\';';
-      
-      var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvents[i][0] + '\', \'' + offlineEvents[i][1] + '\', \'' + offlineEvents[i][2] + '\');';
-
-      //console.log('sql select: ' + sql);
-      //console.log('sql insert: ' + sqlInsert);
 
       // Search for offline event in db, insert it if not found
       let [rows, fields] = await conn.execute(sql, [2, 2]);
-
-      console.log('rows: ' + rows);
+      if (rows.length == 0) {
+        var sqlInsert = 'INSERT INTO offline (accountId, blocknumber, times) VALUES (\'' + offlineEvents[i][0] + '\', \'' + offlineEvents[i][1] + '\', \'' + offlineEvents[i][2] + '\');';
+        let [rows, fields] = await conn.execute(sqlInsert, [2, 2]);
+      }
+      //console.log('rows: ' + rows);
 
     }
   }
