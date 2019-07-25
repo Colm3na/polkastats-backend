@@ -31,8 +31,6 @@ async function main () {
     password: "stats",
     database: 'validators'
   });
-  
-  con.connect();
 
   //console.log(con);
 
