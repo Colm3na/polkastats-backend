@@ -24,9 +24,9 @@ $ node index.js
 $ forever start /usr/local/polkastats-backend/index.js
 ```
 
-## Build graph backend (as root)
+## Setup backend
 
-### Create MySQL database
+### Setup backend MySQL database
 
 ``` bash
 $ mysql -u root -p'your_mysql_root_password'
@@ -51,7 +51,7 @@ $ mysql -u root -p'your_mysql_root_password'
 
 ### Execute backend scripts via cron
 
-Add this to your /etc/crontab:
+Log as root and add this to your /etc/crontab file:
 
 ``` bash
 # PolkaStats backend
