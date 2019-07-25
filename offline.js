@@ -41,7 +41,7 @@ async function main () {
 
       console.log(`accountId: ${offlineEvent[0]} blocknumber: ${offlineEvent[1]} times: ${offlineEvent[2]}`);
 
-      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvent[0] + '\' blocknumber = \'' + offlineEvent[1] + '\' AND times = \'' + offlineEvent[2] + '\';';
+      var sql = 'SELECT id FROM offline WHERE accountId = \'' + offlineEvent[0] + '\' AND blocknumber = \'' + offlineEvent[1] + '\' AND times = \'' + offlineEvent[2] + '\';';
 
       console.log('sql select: ' + sql);
 
