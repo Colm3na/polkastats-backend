@@ -10,8 +10,8 @@ var app = express();
 
 var mysql = require('mysql');
 
+// Local Polkadot node
 var wsProviderUrl = 'ws://127.0.0.1:9944';
-
 
 // CORS
 app.use((req, res, next) => {

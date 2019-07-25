@@ -2,12 +2,15 @@
 // Required imports
 const { ApiPromise, WsProvider } = require('@polkadot/api');
 
+// Local Polkadot node
+var wsProviderUrl = 'ws://127.0.0.1:9944';
+
 async function main () {
   
   //
   // Initialise the provider to connect to the local polkadot node
   //
-  const provider = new WsProvider('ws://127.0.0.1:9944');
+  const provider = new WsProvider(wsProviderUrl);
 
   // Create the API and wait until ready
   const api = await ApiPromise.create(provider);
