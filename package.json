@@ -13,7 +13,8 @@
     "@polkadot/api": "*",
     "bs58": "^4.0.1",
     "express": "^4.17.1",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5"
   },
   "devDependencies": {
     "rimraf": "^2.6.2"
