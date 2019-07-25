@@ -2,7 +2,7 @@
 
 > Polkadot network statistics backend
 
-## Build backend (as root)
+## Build backend (run as root)
 
 ``` bash
 # Change dir
@@ -20,7 +20,7 @@ $ npm run install
 # Serve with nodejs
 $ node index.js
 
-# Start with forever (recommended)
+# OR start with forever (recommended)
 $ forever start /usr/local/polkastats-backend/index.js
 ```
 
@@ -51,7 +51,7 @@ $ mysql -u root -p'your_mysql_root_password'
 
 ### Execute backend scripts via cron
 
-Log as root and add this to your /etc/crontab file:
+Add this to your /etc/crontab file:
 
 ``` bash
 # PolkaStats backend
