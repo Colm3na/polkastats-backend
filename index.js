@@ -138,7 +138,7 @@ app.get('/validator/graph/daily/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last 24 hours
-  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id DESC LIMIT 290;', function(err, rows, fields) {
+  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id ASC LIMIT 290;', function(err, rows, fields) {
     if (err) throw err;
     
     res.json(rows);
@@ -157,7 +157,7 @@ app.get('/validator/graph/weekly/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last 7 days
-  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%:00:%" LIMIT 168;', function(err, rows, fields) {
+  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%:00:%" ORDER BY id ASC LIMIT 168;', function(err, rows, fields) {
     if (err) throw err;
     
     res.json(rows);
@@ -176,7 +176,7 @@ app.get('/validator/graph/monthly/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last month (30 days)
-  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%00:00:%" LIMIT 720;', function(err, rows, fields) {
+  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%00:00:%" ORDER BY id ASC LIMIT 720;', function(err, rows, fields) {
 
     if (err) throw err;
     
