@@ -138,7 +138,7 @@ app.get('/validator/graph/daily/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last 24 hours
-  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id DESC LIMIT 290;', function(err, rows, fields) {
+  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' ORDER BY id DESC LIMIT 289;', function(err, rows, fields) {
     if (err) throw err;
     
     res.json(rows);
