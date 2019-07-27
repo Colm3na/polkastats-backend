@@ -58,6 +58,65 @@ app.get('/system', async function (req, res) {
 });
 
 
+app.get('/session', async function (req, res) {
+  
+  //
+  // Initialise the provider to connect to the local polkadot node
+  //
+  const provider = new WsProvider(wsProviderUrl);
+
+  //
+  // Create the API and wait until ready
+  //
+  const api = await ApiPromise.create(provider);
+
+  //
+  // Get session info
+  //
+  const session = await api.derive.session.info();
+
+  //
+  // Disconnect. TODO: Reuse websocket connection
+  //
+  provider.disconnect();
+
+  //
+  // Outputs JSON
+  //
+  res.json(session);
+
+});
+
+app.get('/bestblocknumber', async function (req, res) {
+  
+  //
+  // Initialise the provider to connect to the local polkadot node
+  //
+  const provider = new WsProvider(wsProviderUrl);
+
+  //
+  // Create the API and wait until ready
+  //
+  const api = await ApiPromise.create(provider);
+
+  //
+  // Get best block number
+  //
+  const blockNumber = await api.derive.chain.bestNumber();
+
+  //
+  // Disconnect. TODO: Reuse websocket connection
+  //
+  provider.disconnect();
+
+  //
+  // Outputs JSON
+  //
+  res.json(blockNumber);
+
+});
+
+
 app.get('/validators', async function (req, res) {
   
   //
