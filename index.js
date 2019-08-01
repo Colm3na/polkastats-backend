@@ -216,7 +216,7 @@ app.get('/validator/graph/weekly/:accountId', function (req, res, next) {
     database: 'validators'
   });
   // Last 7 days
-  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%:00:%" ORDER BY id DESC LIMIT 168;', function(err, rows, fields) {
+  con.query('SELECT id, accountId, timestamp, amount FROM bonded WHERE accountId = \'' + req.params.accountId + '\' AND DATE_FORMAT(FROM_UNIXTIME(`timestamp`), "%d/%m/%Y %H:%i:%s") LIKE "%00:00:%" ORDER BY id DESC LIMIT 7;', function(err, rows, fields) {
     if (err) throw err;
     
     res.json(rows);
