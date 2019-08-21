@@ -28,12 +28,22 @@ async function main () {
       validators.map(authorityId => api.derive.staking.info(authorityId))
     );
 
+    //
+    // Connect to MySQL database
+    //
+    const conn = await mysql.createConnection({
+      host: "localhost",
+      user: "stats",
+      password: "stats",
+      database: 'validators'
+    });
+
     for (var i = 0; i < validatorStaking.length; i++) {
 
       //console.log(validatorStaking[i]);
-      var sql = "INSERT INTO bonded (accountId, timestamp, amount) VALUES ('" + validatorStaking[i].accountId + "', UNIX_TIMESTAMP(), '" + validatorStaking[i].stakers.total + "');";
-      console.log(sql);
-  
+      var sqlInsert = "INSERT INTO bonded (accountId, timestamp, amount) VALUES ('" + validatorStaking[i].accountId + "', UNIX_TIMESTAMP(), '" + validatorStaking[i].stakers.total + "');";
+      let [rows, fields] = await conn.execute(sqlInsert, [2, 2]);
+
     }
   }
 }

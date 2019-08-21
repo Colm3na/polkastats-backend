@@ -25,6 +25,9 @@ async function main () {
   //
   const offlineEvents = await api.query.staking.recentlyOffline();
 
+  //
+  // Database conf
+  //
   const conn = await mysql.createConnection({
     host: "localhost",
     user: "stats",
