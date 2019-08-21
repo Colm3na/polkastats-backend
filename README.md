@@ -55,7 +55,7 @@ Add this to your /etc/crontab file:
 
 ``` bash
 # PolkaStats backend
-*/5 *  * * *   root     node /usr/local/polkastats-backend/stake.js | mysql -u stats -p'stats' -Dvalidators
+*/5 *  * * *   root     node /usr/local/polkastats-backend/stake.js
 * *    * * *   root     node /usr/local/polkastats-backend/offline.js
 ```
 
