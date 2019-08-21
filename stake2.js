@@ -30,9 +30,9 @@ async function main () {
 
     for (var i = 0; i < validatorStaking.length; i++) {
 
-      console.log(validatorStaking[i]);
-
-      //console.log(JSON.stringify({ validator: val.accountId, total: formatDot(val.stakers.total) + ' DOT' }));
+      //console.log(validatorStaking[i]);
+      console.log(JSON.stringify({ validator: validatorStaking[i].accountId, total: formatDot(validatorStaking[i].stakers.total) + ' DOT' }));
+      
       //var sql = "INSERT INTO bonded (accountId, timestamp, amount) VALUES ('" + val.accountId + "', UNIX_TIMESTAMP(), '" + val.stakers.total + "');";
       //console.log(sql);
   
