@@ -2,7 +2,7 @@
 // Required imports
 const { ApiPromise, WsProvider } = require('@polkadot/api');
 
-// Connect to MySQL
+// Promise MySQL lib
 const mysql = require('mysql2/promise');
 
 // Local Polkadot node

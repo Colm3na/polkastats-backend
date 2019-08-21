@@ -15,7 +15,7 @@ async function main () {
   // Create the API and wait until ready
   const api = await ApiPromise.create(provider);
   
-    //
+  //
   // Retrieve active validators
   //
   const [validators] = await Promise.all([
