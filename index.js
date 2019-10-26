@@ -277,9 +277,9 @@ app.get('/offline', async function (req, res) {
 });
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/polkastats.io/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/alexander.polkastats.io/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/alexander.polkastats.io/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/alexander.polkastats.io/chain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,
