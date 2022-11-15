@@ -2,6 +2,8 @@
 
 > Polkadot network statistics backend
 
+This repository is ARCHIVED, for latest version go to https://github.com/polkastats/polkastats
+
 ## Build backend (run as root)
 
 ``` bash
